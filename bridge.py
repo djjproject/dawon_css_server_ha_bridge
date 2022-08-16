@@ -5,6 +5,7 @@ from paho.mqtt import client as mqtt
 #mqtt_client_id = 'DAWONDNS-habridge0000'
 #mqtt_username = 'DAWONDNS-habridge-habridge0000'
 #mqtt_password = 'djjproject'
+mqtt_clientid = 'habridge'
 mqtt_host = '127.0.0.1'
 mqtt_port = '1883'
 mqtt_topic = 'dawon'
@@ -20,7 +21,7 @@ def connect_mqtt(client_id, username, password, host, port):
         else:
             print(f"Connect Failed. {host}:{port}")
 
-    client = mqtt.Client(client_id)
+    client = mqtt.Client(client_id, clean_session=False)
     client.username_pw_set(username, password)
     client.on_connect = on_connect
     client.connect(host, int(port))
@@ -193,8 +194,10 @@ def on_message_control_value(client, userdata, msg):
 
 
 if __name__ == "__main__":
-    client = connect_mqtt("", "", "", mqtt_host, mqtt_port)
-    client.message_callback_add(mqtt_topic + "/+/iot-server/notify/json", on_message_sensor_value)
-    client.message_callback_add("homeassistant/" + mqtt_ha_topic + "/+/set", on_message_control_value)
-    client.subscribe("#")
-    client.loop_forever()
+    mqtt_ret = -1
+    while True:
+        client = connect_mqtt(mqtt_clientid, "", "", mqtt_host, mqtt_port)
+        client.message_callback_add(mqtt_topic + "/+/iot-server/notify/json", on_message_sensor_value)
+        client.message_callback_add("homeassistant/" + mqtt_ha_topic + "/+/set", on_message_control_value)
+        client.subscribe("#")
+        client.loop_forever()

@@ -72,7 +72,7 @@ def on_message_sensor_value(client, userdata, msg):
             ha_version_data = {
                 "name": ha_device_mac + "_Version",
                 #"object_id": ha_device_mac + "_Version",
-                #"unique_id": ha_device_mac + "_Version",
+                "unique_id": ha_device_mac + "_Version",
                 "device": {
                     "identifiers": ha_device_mac,
                     "name": device_name,
@@ -85,7 +85,7 @@ def on_message_sensor_value(client, userdata, msg):
             ha_address_data = {
                 "name": ha_device_mac + "_Address",
                 #"object_id": ha_device_mac + "_Address",
-                #"unique_id": ha_device_mac + "_Address",
+                "unique_id": ha_device_mac + "_Address",
                 "device": {
                     "identifiers": ha_device_mac,
                     "name": device_name,
@@ -99,7 +99,7 @@ def on_message_sensor_value(client, userdata, msg):
                 "device_class": "voltage",
                 "name": ha_device_mac + "_Voltage",
                 #"object_id": ha_device_mac + "_Voltage",
-                #"unique_id": ha_device_mac + "_Voltage",
+                "unique_id": ha_device_mac + "_Voltage",
                 "device": {
                     "identifiers": ha_device_mac,
                     "name": device_name,
@@ -114,7 +114,7 @@ def on_message_sensor_value(client, userdata, msg):
                 "device_class": "power",
                 "name": ha_device_mac + "_Power",
                 #"object_id": ha_device_mac + "_Power",
-                #"unique_id": ha_device_mac + "_Power",
+                "unique_id": ha_device_mac + "_Power",
                 "device": {
                     "identifiers": ha_device_mac,
                     "name": device_name,
@@ -129,7 +129,7 @@ def on_message_sensor_value(client, userdata, msg):
                 "device_class": "temperature",
                 "name": ha_device_mac + "_Temperature",
                 #"object_id":  ha_device_mac + "_Switch",
-                #"unique_id":  ha_device_mac + "_Switch",
+                "unique_id":  ha_device_mac + "_Switch",
                 "device": {
                     "identifiers": ha_device_mac,
                     "name": device_name,
@@ -144,7 +144,7 @@ def on_message_sensor_value(client, userdata, msg):
                 "device_class": "switch",
                 "name": ha_device_mac + "_Switch",
                 #"object_id": ha_device_mac + "_Switch",
-                #"unique_id": ha_device_mac + "_Switch",
+                "unique_id": ha_device_mac + "_Switch",
                 "device": {
                     "identifiers": ha_device_mac,
                     "name": device_name,

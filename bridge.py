@@ -29,11 +29,11 @@ def connect_mqtt(client_id, username, password, host, port):
 def on_message_sensor_value(client, userdata, msg):
     def publish_version(value):
         publish_data = { "Version": value }
-        client.publish("homeassistant/sensor/" + device_name + "-version/state", json.dumps(publish_data), 0, True) 
+        client.publish("homeassistant/sensor/" + device_name + "-version/state", json.dumps(publish_data), 0, False) 
 
     def publish_address(value):
         publish_data = { "Address": value }
-        client.publish("homeassistant/sensor/" + device_name + "-address/state", json.dumps(publish_data), 0, True) 
+        client.publish("homeassistant/sensor/" + device_name + "-address/state", json.dumps(publish_data), 0, False) 
  
     def publish_voltage(value):
         publish_data = { "Voltage": value }

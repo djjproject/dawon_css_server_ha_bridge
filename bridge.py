@@ -2,10 +2,9 @@ import time
 import json
 from paho.mqtt import client as mqtt
 
-#mqtt_client_id = 'DAWONDNS-habridge0000'
-#mqtt_username = 'DAWONDNS-habridge-habridge0000'
-#mqtt_password = 'djjproject'
 mqtt_clientid = 'habridge'
+mqtt_username = ''
+mqtt_password = ''
 mqtt_host = '127.0.0.1'
 mqtt_port = '1883'
 mqtt_topic = 'dawon'
@@ -196,7 +195,7 @@ def on_message_control_value(client, userdata, msg):
 if __name__ == "__main__":
     mqtt_ret = -1
     while True:
-        client = connect_mqtt(mqtt_clientid, "", "", mqtt_host, mqtt_port)
+        client = connect_mqtt(mqtt_clientid, mqtt_username, mqtt_password, mqtt_host, mqtt_port)
         client.message_callback_add(mqtt_topic + "/+/iot-server/notify/json", on_message_sensor_value)
         client.message_callback_add("homeassistant/" + mqtt_ha_topic + "/+/set", on_message_control_value)
         client.subscribe("#")

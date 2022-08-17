@@ -1,0 +1,10 @@
+[Unit]
+Description=Dawon Plug CSS HomeAssistant Bridge
+AssertPathExists=/opt/dawon-bridge
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /opt/dawon-bridge/bridge.py
+
+[Install]
+WantedBy=multi-user.target

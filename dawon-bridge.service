@@ -5,6 +5,8 @@ AssertPathExists=/opt/dawon-bridge
 [Service]
 Type=simple
 ExecStart=/usr/bin/python3 /opt/dawon-bridge/bridge.py
+Restart=on-failure
+RestartSec=5s
 
 [Install]
 WantedBy=multi-user.target

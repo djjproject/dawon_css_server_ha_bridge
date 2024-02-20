@@ -18,6 +18,14 @@ def connect_mqtt(client_id, username, password, host, port):
         else:
             print(f"Connect Failed. {host}:{port}")
 
+        client.message_callback_add(mqtt_topic + "/+/homeassistant/status/json", on_message_sensor_value)
+        client.message_callback_add("homeassistant/" + mqtt_ha_topic + "/+/set", on_message_control_value)
+        print("register callback func succ !!!")
+
+# for paho-mqtt latest version
+#   client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1, client_id, clean_session=False)
+
+# for paho-mqtt==1.6.1
     client = mqtt.Client(client_id, clean_session=False)
     client.username_pw_set(username, password)
     client.on_connect = on_connect
@@ -164,7 +172,5 @@ def on_message_control_value(client, userdata, msg):
 if __name__ == "__main__":
     while True:
         client = connect_mqtt(mqtt_clientid, mqtt_username, mqtt_password, mqtt_host, mqtt_port)
-        client.message_callback_add(mqtt_topic + "/+/homeassistant/status/json", on_message_sensor_value)
-        client.message_callback_add("homeassistant/" + mqtt_ha_topic + "/+/set", on_message_control_value)
         client.subscribe("#")
         client.loop_forever()
